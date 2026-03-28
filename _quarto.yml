@@ -3,11 +3,14 @@ project:
 
 website:
   title: "autoimport_dataset"
-  navbar:
-    left:
+  sidebar:
+    contents:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - href: autoimport_dataset.qmd
+        text: autoimport
 
 format:
   html:

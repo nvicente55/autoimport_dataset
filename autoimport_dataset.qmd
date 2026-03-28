@@ -15,13 +15,13 @@ execute:
 
 ### 🔄 Auto Sync Information
 
-- **Frequency:** Every 15 minutes  
-- **Last Run:** `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`  
-- **Status:** ✅ Scheduled and running  
+-   **Frequency:** Every 15 minutes\
+-   **Last Run:** `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`\
+-   **Status:** ✅ Scheduled and running
 
 > 💡 This dashboard reflects a scheduled pipeline that syncs data from the source database to the target database every 15 minutes.
 
----
+------------------------------------------------------------------------
 
 ## ⚙️ Environment Setup
 
@@ -42,8 +42,6 @@ Sys.setenv(
   TARGET_DB_PASSWORD = "2d7aaffbd55a5ffc9774cebd47386fe080dc7ce2"
 )
 ```
-
-
 
 ```{r}
 #| label: setup
@@ -99,7 +97,6 @@ connect_db <- function(config) {
   )
 }
 ```
-
 
 ```{r}
 #| label: connect-databases
@@ -218,5 +215,3 @@ cat("- Status:", status, "\n")
 cat("- Last Run:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
 cat("- Schedule: Every 15 minutes\n")
 ```
-
-
