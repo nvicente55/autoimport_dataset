@@ -5,4 +5,5 @@
 .Renviron
 .env
 /.quarto/
+/_site/
 styles.css
