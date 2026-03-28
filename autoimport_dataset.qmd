@@ -1,0 +1,196 @@
+---
+title: "autoimport_dataset"
+date: "2026-03-28"
+format: html
+execute:
+  echo: true
+  warning: false
+  error: false
+---
+
+```{r}
+# Run this in R console before rendering the Quarto document
+Sys.setenv(
+  SOURCE_DB_NAME = "sanutrio_pmt_affectgray",
+  SOURCE_DB_HOST = "27-myv.h.filess.io",
+  SOURCE_DB_PORT = "3306",
+  SOURCE_DB_USER = "sanutrio_pmt_affectgray",
+  SOURCE_DB_PASSWORD = "fc1544eb3ec60dfa16b02152d945c134803317aa",
+  TARGET_DB_NAME = "sanutrio_data_myselfland",
+  TARGET_DB_HOST = "oit72w.h.filess.io",
+  TARGET_DB_PORT = "3306",
+  TARGET_DB_USER = "sanutrio_data_myselfland",
+  TARGET_DB_PASSWORD = "2d7aaffbd55a5ffc9774cebd47386fe080dc7ce2"
+)
+```
+
+```{r}
+#| label: setup
+#| include: false
+
+library(DBI)
+library(RMySQL)
+library(dplyr)
+library(purrr)
+library(dotenv)  # For loading .env files
+
+
+# Load environment variables from .env file if it exists
+if (file.exists(".env")) {
+  load_dot_env()
+}
+
+# Function to get required environment variable
+get_env_var <- function(var_name, required = TRUE) {
+  value <- Sys.getenv(var_name)
+  if (required && value == "") {
+    stop("Environment variable ", var_name, " is not set. Please set it before running.")
+  }
+  return(value)
+}
+
+# Database configurations from environment variables
+source_db_config <- list(
+  dbname = get_env_var("SOURCE_DB_NAME"),
+  host = get_env_var("SOURCE_DB_HOST"),
+  port = as.integer(get_env_var("SOURCE_DB_PORT")),
+  username = get_env_var("SOURCE_DB_USER"),
+  password = get_env_var("SOURCE_DB_PASSWORD")
+)
+
+target_db_config <- list(
+  dbname = get_env_var("TARGET_DB_NAME"),
+  host = get_env_var("TARGET_DB_HOST"),
+  port = as.integer(get_env_var("TARGET_DB_PORT")),
+  username = get_env_var("TARGET_DB_USER"),
+  password = get_env_var("TARGET_DB_PASSWORD")
+)
+
+# Function to establish database connection
+connect_db <- function(config) {
+  dbConnect(
+    MySQL(),
+    dbname = config$dbname,
+    host = config$host,
+    port = config$port,
+    user = config$username,
+    password = config$password
+  )
+}
+```
+
+
+```{r}
+#| label: connect-databases
+#| message: false
+
+# Establish connections
+source_conn <- connect_db(source_db_config)
+target_conn <- connect_db(target_db_config)
+
+cat("✅ Connected to source database:", source_db_config$dbname, "\n")
+cat("✅ Connected to target database:", target_db_config$dbname, "\n")
+```
+
+```{r}
+#| label: list-tables
+
+# Get all tables from source database
+source_tables <- dbListTables(source_conn)
+cat("Tables in source database:\n")
+print(source_tables)
+```
+
+```{r}
+#| label: transfer-data
+#| warning: false
+
+# Function to transfer a single table
+transfer_table <- function(table_name, source_conn, target_conn) {
+  cat("\n📤 Transferring table:", table_name, "\n")
+  
+  # Read data from source
+  source_data <- tryCatch({
+    dbReadTable(source_conn, table_name)
+  }, error = function(e) {
+    cat("  ⚠️  Error reading table:", e$message, "\n")
+    return(NULL)
+  })
+  
+  if (is.null(source_data) || nrow(source_data) == 0) {
+    cat("  ℹ️  Table is empty or could not be read, skipping...\n")
+    return(FALSE)
+  }
+  
+  cat("  📊 Read", nrow(source_data), "rows\n")
+  
+  # Check if table exists in target
+  if (dbExistsTable(target_conn, table_name)) {
+    cat("  ⚠️  Table already exists in target, dropping...\n")
+    dbRemoveTable(target_conn, table_name)
+  }
+  
+  # Write to target
+  tryCatch({
+    dbWriteTable(target_conn, table_name, source_data, overwrite = TRUE)
+    cat("  ✅ Successfully transferred", nrow(source_data), "rows\n")
+    return(TRUE)
+  }, error = function(e) {
+    cat("  ❌ Error writing to target:", e$message, "\n")
+    return(FALSE)
+  })
+}
+
+# Transfer all tables
+cat("Starting data transfer...\n")
+cat("================================\n")
+
+transfer_results <- map_lgl(source_tables, ~transfer_table(.x, source_conn, target_conn))
+
+cat("\n================================\n")
+cat("Transfer complete!\n")
+cat("Successfully transferred:", sum(transfer_results), "out of", length(source_tables), "tables\n")
+```
+
+```{r}
+#| label: verify-transfer
+
+# List tables in target database
+target_tables <- dbListTables(target_conn)
+cat("Tables in target database after transfer:\n")
+print(target_tables)
+
+# Compare row counts for transferred tables
+cat("\n📊 Row count verification:\n")
+cat("--------------------------------\n")
+
+for (table in source_tables[transfer_results]) {
+  source_count <- dbGetQuery(source_conn, paste0("SELECT COUNT(*) as count FROM `", table, "`"))$count
+  target_count <- dbGetQuery(target_conn, paste0("SELECT COUNT(*) as count FROM `", table, "`"))$count
+  
+  status <- ifelse(source_count == target_count, "✅", "❌")
+  cat(status, table, ":", source_count, "rows (source) vs", target_count, "rows (target)\n")
+}
+```
+
+```{r}
+#| label: cleanup
+
+# Close database connections
+dbDisconnect(source_conn)
+dbDisconnect(target_conn)
+
+cat("🔌 Database connections closed\n")
+```
+
+```{r}
+#| label: summary
+
+cat("### Transfer Summary\n\n")
+cat("- **Source Database:**", source_db_config$dbname, "\n")
+cat("- **Target Database:**", target_db_config$dbname, "\n")
+cat("- **Tables Transferred:**", sum(transfer_results), "of", length(source_tables), "\n")
+cat("- **Status:**", ifelse(all(transfer_results), "✅ Complete", "⚠️ Partial with errors"), "\n")
+```
+
+
