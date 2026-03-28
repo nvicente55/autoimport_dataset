@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 .Renviron
+.env
 /.quarto/
 styles.css
