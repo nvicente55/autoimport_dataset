@@ -7,7 +7,7 @@ execute:
   warning: false
   error: false
 ---
-
+This is to update dataset from CSWeb server to MySQL cloud server. Please run the following code in R console before rendering this Quarto document to set the necessary environment variables for database connections.
 ```{r}
 # Run this in R console before rendering the Quarto document
 Sys.setenv(
