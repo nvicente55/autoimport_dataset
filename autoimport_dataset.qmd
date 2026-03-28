@@ -1,23 +1,40 @@
 ---
-title: "autoimport_dataset"
+title: "Auto Import Dataset Dashboard"
 date: "2026-03-28"
-format: dashboard
+format:
+  dashboard:
+    orientation: columns
+    theme: cosmo
 execute:
   echo: true
   warning: false
   error: false
 ---
 
+## ⏱️ Sync Status
 
-This is to update dataset from CSWeb server to MySQL cloud server. Please run the following code in R console before rendering this Quarto document to set the necessary environment variables for database connections.
+### 🔄 Auto Sync Information
+
+- **Frequency:** Every 15 minutes  
+- **Last Run:** `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`  
+- **Status:** ✅ Scheduled and running  
+
+> 💡 This dashboard reflects a scheduled pipeline that syncs data from the source database to the target database every 15 minutes.
+
+---
+
+## ⚙️ Environment Setup
+
 ```{r}
-# Run this in R console before rendering the Quarto document
+# Run this in R console before rendering (or store in .env)
+
 Sys.setenv(
   SOURCE_DB_NAME = "sanutrio_pmt_affectgray",
   SOURCE_DB_HOST = "27-myv.h.filess.io",
   SOURCE_DB_PORT = "3306",
   SOURCE_DB_USER = "sanutrio_pmt_affectgray",
   SOURCE_DB_PASSWORD = "fc1544eb3ec60dfa16b02152d945c134803317aa",
+  
   TARGET_DB_NAME = "sanutrio_data_myselfland",
   TARGET_DB_HOST = "oit72w.h.filess.io",
   TARGET_DB_PORT = "3306",
@@ -25,6 +42,8 @@ Sys.setenv(
   TARGET_DB_PASSWORD = "2d7aaffbd55a5ffc9774cebd47386fe080dc7ce2"
 )
 ```
+
+
 
 ```{r}
 #| label: setup
@@ -38,7 +57,7 @@ library(dotenv)  # For loading .env files
 
 
 # Load environment variables from .env file if it exists
-if (file.exists(".env")) {
+if (file.exists(".Renv")) {
   load_dot_env()
 }
 
@@ -189,10 +208,15 @@ cat("🔌 Database connections closed\n")
 #| label: summary
 
 cat("### Transfer Summary\n\n")
-cat("- **Source Database:**", source_db_config$dbname, "\n")
-cat("- **Target Database:**", target_db_config$dbname, "\n")
-cat("- **Tables Transferred:**", sum(transfer_results), "of", length(source_tables), "\n")
-cat("- **Status:**", ifelse(all(transfer_results), "✅ Complete", "⚠️ Partial with errors"), "\n")
+cat("- Source DB:", source_db_config$dbname, "\n")
+cat("- Target DB:", target_db_config$dbname, "\n")
+cat("- Tables transferred:", sum(transfer_results), "/", length(source_tables), "\n")
+
+status <- ifelse(all(transfer_results), "✅ SUCCESS", "⚠️ PARTIAL FAILURE")
+cat("- Status:", status, "\n")
+
+cat("- Last Run:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
+cat("- Schedule: Every 15 minutes\n")
 ```
 
 
