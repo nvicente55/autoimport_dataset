@@ -15,8 +15,8 @@ execute:
 
 ### 🔄 Auto Sync Information
 
--   **Frequency:** Every 15 minutes\
--   **Last Run:** `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`\
+-   **Frequency:** Every 15 minutes
+-   **Last Run:** `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`
 -   **Status:** ✅ Scheduled and running
 
 > 💡 This dashboard reflects a scheduled pipeline that syncs data from the source database to the target database every 15 minutes.
@@ -25,25 +25,26 @@ execute:
 
 ## ⚙️ Environment Setup
 
-```{r}
+```{r, include=FALSE}
 # Run this in R console before rendering (or store in .env)
 
 Sys.setenv(
-  SOURCE_DB_NAME = "sanutrio_pmt_affectgray",
-  SOURCE_DB_HOST = "27-myv.h.filess.io",
+  SOURCE_DB_NAME = "sanutrio_pmt_contrastof",
+  SOURCE_DB_HOST = "czxkmm.h.filess.io",
   SOURCE_DB_PORT = "3306",
-  SOURCE_DB_USER = "sanutrio_pmt_affectgray",
-  SOURCE_DB_PASSWORD = "fc1544eb3ec60dfa16b02152d945c134803317aa",
+  SOURCE_DB_USER = "sanutrio_pmt_contrastof",
+  SOURCE_DB_PASSWORD = "88ad4f4c4c6d0f3e8e1369a4c4039aeaf0c2df61",
   
-  TARGET_DB_NAME = "sanutrio_data_myselfland",
-  TARGET_DB_HOST = "oit72w.h.filess.io",
+
+  TARGET_DB_NAME = "sanutrio_data_plannedman",
+  TARGET_DB_HOST = "7m6251.h.filess.io",
   TARGET_DB_PORT = "3306",
-  TARGET_DB_USER = "sanutrio_data_myselfland",
-  TARGET_DB_PASSWORD = "2d7aaffbd55a5ffc9774cebd47386fe080dc7ce2"
+  TARGET_DB_USER = "sanutrio_data_plannedman",
+  TARGET_DB_PASSWORD = "b3f107fabfb29fa52253db477e1367ace0612a22"
 )
 ```
 
-```{r}
+```{r, echo=FALSE}
 #| label: setup
 #| include: false
 
@@ -119,7 +120,7 @@ cat("Tables in source database:\n")
 print(source_tables)
 ```
 
-```{r}
+```{r, echo=FALSE}
 #| label: transfer-data
 #| warning: false
 
@@ -134,7 +135,6 @@ transfer_table <- function(table_name, source_conn, target_conn) {
     cat("  ⚠️  Error reading table:", e$message, "\n")
     return(NULL)
   })
-  
   if (is.null(source_data) || nrow(source_data) == 0) {
     cat("  ℹ️  Table is empty or could not be read, skipping...\n")
     return(FALSE)
@@ -170,7 +170,7 @@ cat("Transfer complete!\n")
 cat("Successfully transferred:", sum(transfer_results), "out of", length(source_tables), "tables\n")
 ```
 
-```{r}
+```{r, echo=FALSE}
 #| label: verify-transfer
 
 # List tables in target database
@@ -201,7 +201,7 @@ dbDisconnect(target_conn)
 cat("🔌 Database connections closed\n")
 ```
 
-```{r}
+```{r, echo=FALSE}
 #| label: summary
 
 cat("### Transfer Summary\n\n")
