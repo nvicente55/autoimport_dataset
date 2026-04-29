@@ -150,7 +150,7 @@ grid-auto-rows: minmax(0, 1fr);">
 <div class="card-body html-fill-item html-fill-container">
 <ul>
 <li><strong>Frequency:</strong> Every 15 minutes</li>
-<li><strong>Last Run:</strong> 2026-04-14 23:36:04</li>
+<li><strong>Last Run:</strong> 2026-04-29 10:33:30</li>
 <li><strong>Status:</strong> ✅ Scheduled and running</li>
 </ul>
 <hr>
@@ -174,7 +174,7 @@ grid-auto-rows: minmax(0, 1fr);">
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✅ Connected to source database:"</span>, source_db_config<span class="sc">$</span>dbname, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>✅ Connected to source database: sanutrio_pmt_contrastof </code></pre>
+<pre><code>✅ Connected to source database: csweb81 </code></pre>
 </div>
 <div class="sourceCode cell-code html-fill-item html-fill-container" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✅ Connected to target database:"</span>, target_db_config<span class="sc">$</span>dbname, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
@@ -197,7 +197,25 @@ grid-auto-rows: minmax(0, 1fr);">
 </div>
 <div class="sourceCode cell-code html-fill-item html-fill-container" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(source_tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>[1] "coverhh"</code></pre>
+<pre><code> [1] "buildings_dict"                    "buildings_dict_case_binary_data"  
+ [3] "buildings_dict_notes"              "cspro_apps"                       
+ [5] "cspro_binary_sync_history"         "cspro_binary_sync_history_archive"
+ [7] "cspro_config"                      "cspro_dictionaries"               
+ [9] "cspro_dictionaries_schema"         "cspro_log"                        
+[11] "cspro_permissions"                 "cspro_role_dictionary_permissions"
+[13] "cspro_role_permissions"            "cspro_roles"                      
+[15] "cspro_sync_history"                "cspro_users"                      
+[17] "dwelling_dict"                     "dwelling_dict_case_binary_data"   
+[19] "dwelling_dict_notes"               "eaborder_dict"                    
+[21] "eaborder_dict_case_binary_data"    "eaborder_dict_notes"              
+[23] "fieldstaff_dict"                   "fieldstaff_dict_case_binary_data" 
+[25] "fieldstaff_dict_notes"             "household_dict"                   
+[27] "household_dict_case_binary_data"   "household_dict_notes"             
+[29] "oauth_access_tokens"               "oauth_authorization_codes"        
+[31] "oauth_clients"                     "oauth_jwt"                        
+[33] "oauth_refresh_tokens"              "oauth_scopes"                     
+[35] "oauth_users"                       "phc_dict"                         
+[37] "phc_dict_case_binary_data"         "phc_dict_notes"                   </code></pre>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -216,9 +234,209 @@ grid-auto-rows: minmax(0, 1fr);">
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>
-📤 Transferring table: coverhh 
-  📊 Read 7323 rows
-  ✅ Successfully transferred 7323 rows</code></pre>
+📤 Transferring table: buildings_dict </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 514 rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ❌ Error writing to target: input string 2 is invalid 
+
+📤 Transferring table: buildings_dict_case_binary_data </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: buildings_dict_notes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: cspro_apps </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 1 rows
+  ✅ Successfully transferred 1 rows
+
+📤 Transferring table: cspro_binary_sync_history </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: cspro_binary_sync_history_archive </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: cspro_config </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 2 rows
+  ✅ Successfully transferred 2 rows
+
+📤 Transferring table: cspro_dictionaries </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 6 rows
+  ✅ Successfully transferred 6 rows
+
+📤 Transferring table: cspro_dictionaries_schema </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: cspro_log </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 220 rows
+  ✅ Successfully transferred 220 rows
+
+📤 Transferring table: cspro_permissions </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 8 rows
+  ✅ Successfully transferred 8 rows
+
+📤 Transferring table: cspro_role_dictionary_permissions </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 6 rows
+  ✅ Successfully transferred 6 rows
+
+📤 Transferring table: cspro_role_permissions </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 1 rows
+  ✅ Successfully transferred 1 rows
+
+📤 Transferring table: cspro_roles </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 3 rows
+  ✅ Successfully transferred 3 rows
+
+📤 Transferring table: cspro_sync_history </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 58 rows
+  ✅ Successfully transferred 58 rows
+
+📤 Transferring table: cspro_users </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 3 rows
+  ✅ Successfully transferred 3 rows
+
+📤 Transferring table: dwelling_dict </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 54 rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ❌ Error writing to target: input string 1 is invalid 
+
+📤 Transferring table: dwelling_dict_case_binary_data </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: dwelling_dict_notes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: eaborder_dict </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: eaborder_dict_case_binary_data </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: eaborder_dict_notes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: fieldstaff_dict </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: fieldstaff_dict_case_binary_data </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: fieldstaff_dict_notes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: household_dict </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 25 rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ❌ Error writing to target: input string 1 is invalid 
+
+📤 Transferring table: household_dict_case_binary_data </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: household_dict_notes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: oauth_access_tokens </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 2567 rows
+  ✅ Successfully transferred 2567 rows
+
+📤 Transferring table: oauth_authorization_codes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: oauth_clients 
+  📊 Read 1 rows
+  ✅ Successfully transferred 1 rows
+
+📤 Transferring table: oauth_jwt 
+  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: oauth_refresh_tokens </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  📊 Read 2548 rows
+  ✅ Successfully transferred 2548 rows
+
+📤 Transferring table: oauth_scopes 
+  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: oauth_users 
+  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: phc_dict </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: phc_dict_case_binary_data </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...
+
+📤 Transferring table: phc_dict_notes </code></pre>
+</div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>  ℹ️  Table is empty or could not be read, skipping...</code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>
@@ -228,7 +446,7 @@ grid-auto-rows: minmax(0, 1fr);">
 <pre><code>Transfer complete!</code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>Successfully transferred: 1 out of 1 tables</code></pre>
+<pre><code>Successfully transferred: 13 out of 38 tables</code></pre>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -243,7 +461,15 @@ grid-auto-rows: minmax(0, 1fr);">
 <pre><code>Tables in target database after transfer:</code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>[1] "coverhh"</code></pre>
+<pre><code> [1] "buildings_dict"                    "coverhh"                          
+ [3] "cspro_apps"                        "cspro_config"                     
+ [5] "cspro_dictionaries"                "cspro_log"                        
+ [7] "cspro_permissions"                 "cspro_role_dictionary_permissions"
+ [9] "cspro_role_permissions"            "cspro_roles"                      
+[11] "cspro_sync_history"                "cspro_users"                      
+[13] "dwelling_dict"                     "household_dict"                   
+[15] "oauth_access_tokens"               "oauth_clients"                    
+[17] "oauth_refresh_tokens"             </code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>
@@ -253,7 +479,19 @@ grid-auto-rows: minmax(0, 1fr);">
 <pre><code>--------------------------------</code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>✅ coverhh : 7323 rows (source) vs 7323 rows (target)</code></pre>
+<pre><code>✅ cspro_apps : 1 rows (source) vs 1 rows (target)
+✅ cspro_config : 2 rows (source) vs 2 rows (target)
+✅ cspro_dictionaries : 6 rows (source) vs 6 rows (target)
+✅ cspro_log : 220 rows (source) vs 220 rows (target)
+✅ cspro_permissions : 8 rows (source) vs 8 rows (target)
+✅ cspro_role_dictionary_permissions : 6 rows (source) vs 6 rows (target)
+✅ cspro_role_permissions : 1 rows (source) vs 1 rows (target)
+✅ cspro_roles : 3 rows (source) vs 3 rows (target)
+✅ cspro_sync_history : 58 rows (source) vs 58 rows (target)
+✅ cspro_users : 3 rows (source) vs 3 rows (target)
+❌ oauth_access_tokens : 2568 rows (source) vs 2567 rows (target)
+✅ oauth_clients : 1 rows (source) vs 1 rows (target)
+✅ oauth_refresh_tokens : 2548 rows (source) vs 2548 rows (target)</code></pre>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -264,16 +502,16 @@ grid-auto-rows: minmax(0, 1fr);">
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 <div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Close database connections</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(source_conn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Close database connections</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(source_conn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(target_conn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(target_conn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"🔌 Database connections closed</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"🔌 Database connections closed</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>🔌 Database connections closed</code></pre>
 </div>
@@ -290,19 +528,19 @@ grid-auto-rows: minmax(0, 1fr);">
 <pre><code>### Transfer Summary</code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>- Source DB: sanutrio_pmt_contrastof </code></pre>
+<pre><code>- Source DB: csweb81 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>- Target DB: sanutrio_data_plannedman </code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>- Tables transferred: 1 / 1 </code></pre>
+<pre><code>- Tables transferred: 13 / 38 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>- Status: ✅ SUCCESS </code></pre>
+<pre><code>- Status: ⚠️ PARTIAL FAILURE </code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>- Last Run: 2026-04-14 23:36:32 </code></pre>
+<pre><code>- Last Run: 2026-04-29 10:35:25 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
 <pre><code>- Schedule: Every 15 minutes</code></pre>

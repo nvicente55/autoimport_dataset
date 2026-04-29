@@ -15,7 +15,7 @@ execute:
 
 ### 🔄 Auto Sync Information
 
--   **Frequency:** Every 15 minutes
+-   **Frequency:** Every 12 hours
 -   **Last Run:** `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`
 -   **Status:** ✅ Scheduled and running
 
@@ -29,11 +29,11 @@ execute:
 # Run this in R console before rendering (or store in .env)
 
 Sys.setenv(
-  SOURCE_DB_NAME = "sanutrio_pmt_contrastof",
-  SOURCE_DB_HOST = "czxkmm.h.filess.io",
+  SOURCE_DB_NAME = "csweb81",
+  SOURCE_DB_HOST = "43.254.59.238",
   SOURCE_DB_PORT = "3306",
-  SOURCE_DB_USER = "sanutrio_pmt_contrastof",
-  SOURCE_DB_PASSWORD = "88ad4f4c4c6d0f3e8e1369a4c4039aeaf0c2df61",
+  SOURCE_DB_USER = "shiny_user",
+  SOURCE_DB_PASSWORD = "SanuTRIO_2026&*",
   
 
   TARGET_DB_NAME = "sanutrio_data_plannedman",
